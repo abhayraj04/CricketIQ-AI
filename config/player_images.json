@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "asset_policy": "No player portraits are bundled until identity and redistribution permission are verified.",
+  "identity_key": "Exact player_name from the supplied profile CSV; cricsheet_id is not unique in this dataset.",
+  "players": {}
+}

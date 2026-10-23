@@ -1,0 +1,25 @@
+# Environments & virtualenvs
+.venv/
+env/
+venv/
+ENV/
+
+# Python & testing caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+*.sqlite3
+
+# Large raw datasets (> 100 MB, exceeds GitHub push limits)
+data/processed/*.sqlite
+data/processed/ipl_ball_by_ball_processed.csv
+csv/ipl_ball_by_ball_processed.csv
+
+# Secrets & credentials (CRITICAL: never commit to Git)
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+secrets.toml

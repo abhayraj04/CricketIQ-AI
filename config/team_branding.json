@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-10-21",
+  "source": "https://www.iplt20.com/teams",
+  "source_owner": "Board of Control for Cricket in India",
+  "asset_policy": "Official BCCI/IPL logos and marks are not copied without written authorization.",
+  "teams": [
+    {"name": "Chennai Super Kings", "short_name": "CSK", "historical_aliases": [], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Delhi Capitals", "short_name": "DC", "historical_aliases": ["Delhi Daredevils"], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Gujarat Titans", "short_name": "GT", "historical_aliases": [], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Kolkata Knight Riders", "short_name": "KKR", "historical_aliases": [], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Lucknow Super Giants", "short_name": "LSG", "historical_aliases": [], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Mumbai Indians", "short_name": "MI", "historical_aliases": [], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Punjab Kings", "short_name": "PBKS", "historical_aliases": ["Kings XI Punjab"], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Rajasthan Royals", "short_name": "RR", "historical_aliases": [], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Royal Challengers Bengaluru", "short_name": "RCB", "historical_aliases": ["Royal Challengers Bangalore"], "logo_path": null, "primary_color": null, "secondary_color": null},
+    {"name": "Sunrisers Hyderabad", "short_name": "SRH", "historical_aliases": [], "logo_path": null, "primary_color": null, "secondary_color": null}
+  ],
+  "seasons": {
+    "2026": {
+      "status": "participation_verified_completed",
+      "teams": [
+        "Chennai Super Kings",
+        "Delhi Capitals",
+        "Gujarat Titans",
+        "Kolkata Knight Riders",
+        "Lucknow Super Giants",
+        "Mumbai Indians",
+        "Punjab Kings",
+        "Rajasthan Royals",
+        "Royal Challengers Bengaluru",
+        "Sunrisers Hyderabad"
+      ],
+      "source": "https://www.iplt20.com/teams",
+      "last_verified": "2026-10-21",
+      "fixture_status": "Completed season; not eligible for future-match prediction."
+    },
+    "2027": {
+      "status": "unverified",
+      "teams": [],
+      "source": "https://www.iplt20.com/matches/fixtures",
+      "last_verified": "2026-10-21",
+      "fixture_status": "No future-season participation or fixture list verified."
+    }
+  }
+}

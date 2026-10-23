@@ -1,0 +1,10 @@
+{
+  "title": "IPL Master Dataset (2008-2026) | Complete Ball-by-Ball & Biometrics",
+  "id": "YOUR_KAGGLE_USERNAME/ipl-master-dataset-2008-2026",
+  "licenses": [
+    {
+      "name": "CC-BY-SA-4.0"
+    }
+  ],
+  "description": "Comprehensive, mathematically audited IPL dataset (2008-2026) with 1,243 matches, 295,732 balls, player batting/bowling biometrics, DRS reviews, Impact Player subs, and dual Parquet + CSV exports."
+}

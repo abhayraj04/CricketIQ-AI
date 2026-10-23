@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --app-bg: #0b1220;
+    --sidebar-bg: #09101d;
+    --surface: #111b2b;
+    --surface-raised: #172438;
+    --line: #26364b;
+    --text: #edf3f8;
+    --muted: #9eacbd;
+    --gold: #f1bb4b;
+    --blue: #49bce8;
+    --orange: #f47c48;
+    --teal: #36c6a4;
+}
+
+html, body, [class*="css"] {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.stApp {
+    color: var(--text);
+    background:
+    radial-gradient(ellipse at 84% 0%, color-mix(in srgb, var(--blue) 8%, transparent), transparent 32%),
+    var(--app-bg);
+}
+
+[data-testid="stAppViewContainer"] > .main .block-container {
+    max-width: 1560px;
+    padding: 1.4rem 2rem 2.5rem;
+}
+
+[data-testid="stSidebar"] {
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--line);
+}
+
+[data-testid="stSidebar"] > div:first-child {
+    padding-top: 1.3rem;
+}
+
+h1, h2, h3 {
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0;
+}
+
+h1 {
+    font-size: 2.15rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.65rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+[data-testid="stMetric"] {
+    min-height: 96px;
+    padding: 0.8rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--gold);
+    border-radius: 8px;
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--muted);
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.85rem;
+}
+
+[data-testid="stRadio"] [role="radiogroup"] {
+    gap: 0.25rem;
+}
+
+[data-testid="stRadio"] label {
+    padding: 0.42rem 0.55rem;
+    border-radius: 6px;
+}
+
+[data-testid="stRadio"] label:has(input:checked) {
+    color: var(--gold);
+    background: color-mix(in srgb, var(--gold) 12%, var(--surface));
+    box-shadow: inset 3px 0 0 var(--gold);
+}
+
+[data-testid="stSelectbox"] label,
+[data-testid="stMultiSelect"] label,
+[data-testid="stSlider"] label {
+    color: var(--muted);
+}
+
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+[data-testid="stCaptionContainer"] {
+    color: var(--muted);
+}
+
+.page-kicker {
+    margin-bottom: 0.25rem;
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.insight-strip {
+    padding: 0.8rem 1rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    border-radius: 6px;
+}
+
+.ipl-brand {
+    padding: 0.5rem 0 1.2rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1rem;
+}
+
+.ipl-brand-mark {
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ipl-brand-subtitle {
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.team-identity, .player-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
+}
+
+.team-identity-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.team-identity-copy strong, .player-identity strong {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.team-identity-copy small {
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.team-identity-fallback, .player-identity-fallback,
+.team-identity-image, .player-identity-image {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--gold);
+    background: var(--surface-raised);
+    font-size: 0.72rem;
+    font-weight: 700;
+    object-fit: contain;
+}
+
+[data-testid="stPlotlyChart"] {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+}
+
+@media (max-width: 800px) {
+    [data-testid="stAppViewContainer"] > .main .block-container {
+        padding: 1rem 0.8rem 1.5rem;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Remove default Streamlit card shadow and keep sections quiet. */
+[data-testid="stVerticalBlockBorderWrapper"] {
+    border-color: var(--line);
+}
+
+/* Older dashboard-specific selectors retained only when the component exists. */
+[data-testid="stTabs"] [role="tab"] {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+[data-testid="stTabs"] [aria-selected="true"] {
+    color: var(--text);
+    border-bottom-color: var(--violet);
+}
