@@ -110,9 +110,6 @@ def render_ai_intelligence_center(
             for message in st.session_state.ai_chat_messages:
                 with st.chat_message(message["role"]):
                     st.markdown(message["content"])
-                    if message.get("grounded") and message.get("evidence"):
-                        with st.expander("Retrieved Factual Evidence (Audit Trail)", expanded=False):
-                            st.json(message["evidence"])
 
         # Chat actions
         action_col, _ = st.columns([1, 4])
@@ -138,7 +135,7 @@ def render_ai_intelligence_center(
                 st.markdown(user_input)
 
             with st.chat_message("assistant"):
-                with st.spinner("Retrieving verified facts and synthesizing response..."):
+                with st.spinner("Analyzing verified records and synthesizing response..."):
                     result = analyst.answer_question(
                         user_input,
                         chat_history=[
@@ -147,9 +144,6 @@ def render_ai_intelligence_center(
                         ],
                     )
                     st.markdown(result["answer"])
-                    if result.get("evidence"):
-                        with st.expander("Retrieved Factual Evidence (Audit Trail)", expanded=False):
-                            st.json(result["evidence"])
 
             st.session_state.ai_chat_messages.append(
                 {
