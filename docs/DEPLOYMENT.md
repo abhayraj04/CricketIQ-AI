@@ -54,12 +54,13 @@ git push -u origin main
 
 ## 4. Step 3: Deploy on Streamlit Community Cloud
 
-1. Log in to [Streamlit Community Cloud](https://share.streamlit.io/) using your GitHub account.
-2. Click the **"New app"** button in the upper right corner.
-3. Select the repository: `<YOUR_GITHUB_USERNAME>/cricketmind-ai`.
+1. Log in to [Streamlit Community Cloud](https://share.streamlit.io/) using your GitHub account (`abhayraj04`).
+2. Click the **"New app"** (or **"Create app"**) button.
+3. Select your repository: `abhayraj04/CricketIQ-AI`.
 4. Set the **Branch** to `main`.
 5. Set the **Main file path** to `app.py`.
-6. Set the **App URL** to a custom subdomain (e.g. `cricketmind-ai.streamlit.app`).
+6. Set the **App URL** to a custom subdomain (e.g. `cricket-iq-ai.streamlit.app` or `cricketmind-ai.streamlit.app`).
+7. Click **Deploy!**
 
 ---
 
