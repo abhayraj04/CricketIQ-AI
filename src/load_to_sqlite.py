@@ -18,8 +18,8 @@ DATA_FILES = {
 }
 
 REQUIRED_COLUMNS = {
-    "ipl_ball_by_ball_processed": {"match_id", "innings", "total_runs", "date"},
-    "ipl_matches_summary": {"match_id", "team1", "team2", "outcome_winner"},
+    "ipl_ball_by_ball_processed": {"match_id", "innings", "total_runs", "date", "calendar_year"},
+    "ipl_matches_summary": {"match_id", "team1", "team2", "outcome_winner", "calendar_year"},
     "ipl_player_profiles": {"player_name", "runs_scored", "wickets"},
     "ipl_player_summary": {"player_name", "runs_scored", "wickets"},
 }
@@ -36,6 +36,8 @@ def load_table(
     # Fast-load directly from compressed parquet if present (optimal for cloud deployments)
     if parquet_path.exists():
         df = pd.read_parquet(parquet_path)
+        if "calendar_year" not in df.columns and "date" in df.columns:
+            df["calendar_year"] = pd.to_datetime(df["date"]).dt.year.astype("int16")
         missing_columns = REQUIRED_COLUMNS[table_name] - set(df.columns)
         if missing_columns:
             raise ValueError(f"{parquet_path.name} is missing columns: {sorted(missing_columns)}")
@@ -46,6 +48,9 @@ def load_table(
         raise FileNotFoundError(f"Neither processed CSV ({csv_path}) nor Parquet ({parquet_path}) was found.")
 
     column_names = set(pd.read_csv(csv_path, nrows=0).columns)
+    if "calendar_year" not in column_names and "date" in column_names:
+        column_names.add("calendar_year")
+
     missing_columns = REQUIRED_COLUMNS[table_name] - column_names
     if missing_columns:
         raise ValueError(
@@ -56,6 +61,8 @@ def load_table(
     for chunk_number, chunk in enumerate(
         pd.read_csv(csv_path, chunksize=CHUNK_SIZE, low_memory=False)
     ):
+        if "calendar_year" not in chunk.columns and "date" in chunk.columns:
+            chunk["calendar_year"] = pd.to_datetime(chunk["date"]).dt.year.astype("int16")
         chunk.to_sql(
             table_name,
             connection,
