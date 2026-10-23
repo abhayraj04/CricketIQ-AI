@@ -33,13 +33,13 @@ def load_table(
     csv_path = PROCESSED_DATA_DIR / file_name
     parquet_path = PARQUET_DATA_DIR / f"{table_name}.parquet"
 
-    # Support fast fallback from parquet if processed CSV is missing (e.g. lightweight deployment)
-    if not csv_path.exists() and parquet_path.exists():
+    # Fast-load directly from compressed parquet if present (optimal for cloud deployments)
+    if parquet_path.exists():
         df = pd.read_parquet(parquet_path)
         missing_columns = REQUIRED_COLUMNS[table_name] - set(df.columns)
         if missing_columns:
             raise ValueError(f"{parquet_path.name} is missing columns: {sorted(missing_columns)}")
-        df.to_sql(table_name, connection, if_exists="replace", index=False)
+        df.to_sql(table_name, connection, if_exists="replace", index=False, chunksize=25_000)
         return len(df)
 
     if not csv_path.exists():
@@ -61,6 +61,7 @@ def load_table(
             connection,
             if_exists="replace" if chunk_number == 0 else "append",
             index=False,
+            chunksize=CHUNK_SIZE,
         )
         total_rows += len(chunk)
 
@@ -74,12 +75,18 @@ def ensure_database_ready(target_db_path: Path = DATABASE_PATH) -> Path:
         return target_path
 
     target_path.parent.mkdir(parents=True, exist_ok=True)
-    with sqlite3.connect(target_path) as connection:
+    connection = sqlite3.connect(target_path)
+    try:
+        connection.execute("PRAGMA synchronous = OFF")
+        connection.execute("PRAGMA journal_mode = MEMORY")
         for table_name, file_name in DATA_FILES.items():
             load_table(connection, table_name, file_name)
+        connection.commit()
         integrity_result = connection.execute("PRAGMA integrity_check").fetchone()[0]
         if integrity_result != "ok":
             raise RuntimeError(f"SQLite integrity check failed: {integrity_result}")
+    finally:
+        connection.close()
     return target_path
 
 

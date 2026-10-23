@@ -30,7 +30,12 @@ def load_chase_model(model_path: str | Path) -> dict:
             "Train it with `python -m src.train_chase_model`."
         )
 
-    bundle = joblib.load(path)
+    try:
+        bundle = joblib.load(path)
+    except (AttributeError, ImportError, ModuleNotFoundError):
+        from src.train_chase_model import main as train_chase
+        train_chase()
+        bundle = joblib.load(path)
     if not isinstance(bundle, dict) or bundle.get("format_version") != MODEL_FORMAT_VERSION:
         raise ValueError("Unsupported or invalid chase model artifact format.")
     if bundle.get("feature_columns") != FEATURE_COLUMNS:
