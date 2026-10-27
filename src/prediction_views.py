@@ -410,6 +410,21 @@ def render_prediction_lab(
                 contrib_dict = dict(zip(explanation["Model factor"], explanation["Log-odds contribution"]))
                 pred_expl = explain_prediction(state, feature_row, prediction, contrib_dict)
                 st.markdown(pred_expl["explanation"])
+
+                def _discuss_in_ai():
+                    st.session_state["pending_user_query"] = (
+                        f"Analyze this live chase prediction: {state['batting_team']} chasing {state['target_score']} "
+                        f"against {state['bowling_team']}. Current score is {state['current_score']}/{state['wickets_lost']} "
+                        f"in {int(state['legal_balls_bowled']//6)}.{int(state['legal_balls_bowled']%6)} overs."
+                    )
+                    st.session_state["active_page"] = "AI Intelligence Center"
+
+                st.button(
+                    "💬 Chat with AI About This State in Intelligence Center",
+                    on_click=_discuss_in_ai,
+                    key="btn_chat_ai_chase",
+                    help="Jump directly to AI Intelligence Center with this match state preloaded",
+                )
         else:
             st.caption("Click to translate mathematical feature weights and run-rate dynamics into plain-English reasoning.")
 

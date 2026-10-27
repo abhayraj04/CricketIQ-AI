@@ -170,7 +170,7 @@ def set_active_page(page_name: str) -> None:
 st.markdown("<div class='page-kicker'>CricketMind AI / IPL ANALYTICS & INTELLIGENCE PLATFORM</div>", unsafe_allow_html=True)
 
 # Always-Visible On-Screen Navigation & Quick-Access Action Bar
-nav_col1, nav_col2, nav_col3, _ = st.columns([1.3, 1.3, 1.1, 2.3])
+nav_col1, nav_col2, nav_col3, nav_col4, nav_status_col = st.columns([1.3, 1.3, 1.1, 1.3, 1.7])
 with nav_col1:
     st.button(
         "🔮 Prediction Lab",
@@ -200,6 +200,26 @@ with nav_col3:
         on_click=set_active_page,
         args=("Overview",),
         help="Return to Executive Overview Dashboard",
+    )
+with nav_col4:
+    st.button(
+        "🏏 Match Explorer",
+        type="primary" if active_page == "Match explorer" else "secondary",
+        use_container_width=True,
+        key="btn_onscreen_match_explorer",
+        on_click=set_active_page,
+        args=("Match explorer",),
+        help="Inspect historical scorecards & momentum",
+    )
+with nav_status_col:
+    st.markdown(
+        "<div style='display:flex; justify-content:flex-end; align-items:center; height:100%; padding-top:6px;'>"
+        "<span class='nav-status-badge'>"
+        "<span class='nav-status-dot'></span>"
+        "<span>ML Calibrated · ROC-AUC 0.8995</span>"
+        "</span>"
+        "</div>",
+        unsafe_allow_html=True,
     )
 
 st.title(active_page)
