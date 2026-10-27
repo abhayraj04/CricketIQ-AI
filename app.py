@@ -162,7 +162,46 @@ selected_matches = filter_matches(
 )
 selected_deliveries = filter_deliveries(deliveries, selected_matches)
 
+
+def set_active_page(page_name: str) -> None:
+    st.session_state["active_page"] = page_name
+
+
 st.markdown("<div class='page-kicker'>CricketMind AI / IPL ANALYTICS & INTELLIGENCE PLATFORM</div>", unsafe_allow_html=True)
+
+# Always-Visible On-Screen Navigation & Quick-Access Action Bar
+nav_col1, nav_col2, nav_col3, _ = st.columns([1.3, 1.3, 1.1, 2.3])
+with nav_col1:
+    st.button(
+        "🔮 Prediction Lab",
+        type="primary" if active_page == "Prediction Lab" else "secondary",
+        use_container_width=True,
+        key="btn_onscreen_pred_lab",
+        on_click=set_active_page,
+        args=("Prediction Lab",),
+        help="Instant on-screen access to Live Chase Probability Simulator",
+    )
+with nav_col2:
+    st.button(
+        "🤖 AI Intelligence",
+        type="primary" if active_page == "AI Intelligence Center" else "secondary",
+        use_container_width=True,
+        key="btn_onscreen_ai_center",
+        on_click=set_active_page,
+        args=("AI Intelligence Center",),
+        help="Instant on-screen access to Conversational Cricket Analyst",
+    )
+with nav_col3:
+    st.button(
+        "📊 Overview",
+        type="primary" if active_page == "Overview" else "secondary",
+        use_container_width=True,
+        key="btn_onscreen_overview",
+        on_click=set_active_page,
+        args=("Overview",),
+        help="Return to Executive Overview Dashboard",
+    )
+
 st.title(active_page)
 st.caption(PAGE_SUBTITLES[active_page])
 st.caption(
